@@ -2,12 +2,52 @@
   margin: 0;
 }
 :root {
+  --text-white: #ffff;
   --color-text-grey: #3b3a39;
   --shadow: #4d4d4d;
+  --border-toxic: purple;
 }
 main {
   display: flex;
   flex-direction: column;
+}
+div-card-todo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   border-radius: 12px;
   padding: 15px;
+  box-shadow: 0px 0px 20px 5px var(--shadow);
+}
+div-create-todo {
+  color: var(--text-white);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+div-btn-filter {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+}
+
+btn {
+  color: ;
+  background-color: ;
+  border: none;
+}
+btn:hover {
+  cursor: pointer;
+  border: ;
+}
+
+div-task {
+   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 8px;
+   box-shadow: 0px 0px 15px 0px var(--shadow);
 }
