@@ -17,12 +17,18 @@
                 >
                     <path d="M12,15.4l-6-6L7.4,8L12,12.6L16.6,8L18,9.4l-6,6Z" />
                 </svg>
-                <input type="text" placeholder="Quoi de prévu aujourd'hui ?" />
+                <input
+                    type="text"
+                    placeholder="Quoi de prévu aujourd'hui ?"
+                    id="userText"
+                />
             </article>
             <ul id="listContainer">
                 <li class="listContainer-li">
-                    <input type="checkbox" name="checkbox" id="checkboxX" />
-                    <label for="checkboxX">Test</label>
+                    <label for="checkboxX"
+                        >Test
+                        <input type="checkbox" name="checkbox" id="checkboxX" />
+                    </label>
                     <button>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -39,5 +45,6 @@
                 </li>
             </ul>
         </section>
+        <script src="app.js"></script>
     </body>
 </html>
