@@ -20,6 +20,7 @@
     },
     "homepage": "https://github.com/Kynlow/todolist-api-project#readme",
     "dependencies": {
+        "cors": "^2.8.6",
         "express": "^5.3.0"
     }
 }

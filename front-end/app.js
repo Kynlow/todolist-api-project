@@ -2,11 +2,15 @@
 const $userText = document.querySelector("#userText");
 const $ul = document.querySelector("#listContainer");
 
+document.addEventListener("DOMContentLoaded", () => {
+    getFromAPI();
+});
+
 //Ecoute sur l'input de creation des elements list
 $userText.addEventListener("keydown", (e) => {
     if (e.key != "Enter") return;
     if (!e.currentTarget.value.trim()) return;
-    createLiElement(e.currentTarget.value.trim());
+    createLiElement({ name: e.currentTarget.value.trim(), id: Date.now() });
     sendTOAPI(e.currentTarget.value.trim());
     e.currentTarget.value = "";
 });
@@ -15,8 +19,9 @@ $userText.addEventListener("keydown", (e) => {
 function createLiElement(text) {
     const $li = document.createElement("li");
     $li.classList.add("listContainer-li");
+    $li.dataset.id = text.id;
     const $label = document.createElement("label");
-    $label.textContent = text;
+    $label.textContent = text.name;
     const $checkbox = document.createElement("input");
     $checkbox.setAttribute("type", "checkbox");
 
@@ -24,6 +29,7 @@ function createLiElement(text) {
     $checkbox.addEventListener("change", (e) => {
         if (!e.currentTarget.checked) $label.style.textDecoration = "none";
         else $label.style.textDecoration = "line-through";
+        patchAPI($li.dataset.id);
     });
 
     $label.prepend($checkbox);
@@ -55,7 +61,7 @@ async function sendTOAPI(text) {
         name: text,
         isChecked: false,
     };
-    await fetch(`http://localhost:3000/tasks`, {
+    await fetch(`http://localhost:3008/tasks`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -69,9 +75,19 @@ async function getFromAPI(query) {
     if (query != undefined) {
         queryparams += `?isChecked=${query}`;
     }
-    const request = await fetch("http://localhost:3000/tasks" + queryparams);
+    const request = await fetch("http://localhost:3008/tasks" + queryparams);
     const response = await request.json();
+    if (!response) return;
+    $ul.innerHTML = "";
     response.forEach((element) => {
-        createLiElement(element.name);
+        createLiElement(element);
+    });
+    console.log(response);
+}
+
+async function patchAPI(element) {
+    await fetch(`http://localhost:3008/tasks/${element}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
     });
 }
