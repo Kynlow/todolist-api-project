@@ -1,53 +1,65 @@
 * {
   margin: 0;
+  box-sizing: border-box;
 }
+
 :root {
-  --text-white: #ffff;
+  --text-white: #ffffff;
   --color-text-grey: #3b3a39;
   --shadow: #4d4d4d;
   --border-toxic: purple;
+  --background-purple: #6203fc;
 }
-main {
+
+section {
   display: flex;
   flex-direction: column;
-}
-div-card-todo {
-  display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  border-radius: 12px;
-  padding: 15px;
-  box-shadow: 0px 0px 20px 5px var(--shadow);
+  min-height: 100vh;
 }
-div-create-todo {
+
+article {
   color: var(--text-white);
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20%;
 }
 
-div-btn-filter {
+.div-btn-filter {
   display: flex;
   flex-direction: row;
   justify-content: center;
   gap: 10px;
 }
 
-btn {
-  color: ;
-  background-color: ;
+button {
+  color: var(--text-white);
+  background-color: var(--background-purple);
   border: none;
-}
-btn:hover {
-  cursor: pointer;
-  border: ;
+  border-radius: 12px;
 }
 
-div-task {
-   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+button:hover {
+  cursor: pointer;
+  border: 1px solid var(--border-toxic);
+}
+
+#listContainer {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
   padding: 8px;
-   box-shadow: 0px 0px 15px 0px var(--shadow);
+  width: 50%;
+  box-shadow: 0px 0px 15px 0px var(--shadow);
+  border-radius: 12px;
+}
+
+.listContainer-li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
