@@ -11,6 +11,11 @@
   --background-purple: #6203fc;
 }
 
+p {
+  margin: 0;
+  padding: 0;
+}
+
 section {
   display: flex;
   flex-direction: column;
@@ -19,13 +24,21 @@ section {
   min-height: 100vh;
 }
 
+.group-create-task {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
 article {
   color: var(--text-white);
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin-top: 10%;
   margin-bottom: 20%;
+  gap: 20px;
 }
 
 .div-btn-filter {
@@ -35,16 +48,29 @@ article {
   gap: 10px;
 }
 
+.btn-filter-selct {
+  background: none;
+  color: var(--color-text-grey);
+}
+
+.btn-filter-selct:focus {
+  cursor: pointer;
+  outline-color: var(--border-toxic);
+}
+
 button {
   color: var(--text-white);
   background-color: var(--background-purple);
   border: none;
+  outline: 2px solid transparent;
+  outline-offset: 1px;
+  transition: outline-color 0.2s;
   border-radius: 12px;
 }
 
 button:hover {
   cursor: pointer;
-  border: 1px solid var(--border-toxic);
+  outline-color: var(--border-toxic);
 }
 
 #listContainer {
@@ -62,4 +88,12 @@ button:hover {
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  border-top: thin solid var(--shadow);
+  padding: 10px;
+}
+.filter-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
 }
