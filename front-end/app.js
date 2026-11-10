@@ -30,8 +30,13 @@ function createLiElement(text) {
 
     //Rayer le texte du label dans le li si la case est cochée
     $checkbox.addEventListener("change", (e) => {
-        if (!e.currentTarget.checked) $label.style.textDecoration = "none";
-        else $label.style.textDecoration = "line-through";
+        if (!e.currentTarget.checked) {
+            $label.style.textDecoration = "none";
+            $PitemsLeft.textContent = parseInt($PitemsLeft.textContent) + 1;
+        } else {
+            $label.style.textDecoration = "line-through";
+            $PitemsLeft.textContent = parseInt($PitemsLeft.textContent) - 1;
+        }
         patchAPI($li.dataset.id);
     });
 
