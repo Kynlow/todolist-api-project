@@ -2,6 +2,8 @@
 const $userText = document.querySelector("#userText");
 const $ul = document.querySelector("#listContainer");
 const $PitemsLeft = document.querySelector("#PitemsLeft");
+const $active = document.querySelector("#active");
+const $completed = document.querySelector("#completed");
 
 document.addEventListener("DOMContentLoaded", () => {
     getFromAPI();
@@ -16,6 +18,15 @@ $userText.addEventListener("keydown", (e) => {
     createLiElement({ name: e.currentTarget.value.trim(), id: Date.now() });
     sendTOAPI({ naame: e.currentTarget.value.trim(), id: Date.now() });
     e.currentTarget.value = "";
+});
+
+//Ecoute sur les boutons pour les filtres
+$active.addEventListener("click", () => {
+    getFromAPI(false);
+});
+
+$completed.addEventListener("click", () => {
+    getFromAPI(true);
 });
 
 //Function pour creer les elements li, ajouter une écoute sur les interractions et l'ajouter au parent
@@ -91,7 +102,7 @@ async function getFromAPI(query) {
     const request = await fetch("http://localhost:3008/tasks" + queryparams);
     const response = await request.json();
     if (!response) return;
-    $PitemsLeft.textContent = response.length;
+    $$PitemsLeft.textContent = response.length;
     $ul.innerHTML = "";
     response.forEach((element) => {
         createLiElement(element);
