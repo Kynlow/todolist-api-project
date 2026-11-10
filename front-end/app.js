@@ -61,7 +61,8 @@ function createLiElement(text) {
     //Supprime la balise li et ses elements
     $button.addEventListener("click", () => {
         $li.remove();
-        $PitemsLeft.textContent = parseInt($PitemsLeft.textContent) - 1;
+        if (!$checkbox.checked)
+            $PitemsLeft.textContent = parseInt($PitemsLeft.textContent) - 1;
 
         deleteAPI($li.dataset.id);
     });
