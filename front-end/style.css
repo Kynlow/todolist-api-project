@@ -1,99 +1,229 @@
 * {
-  margin: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 :root {
-  --text-white: #ffffff;
-  --color-text-grey: #3b3a39;
-  --shadow: #4d4d4d;
-  --border-toxic: purple;
-  --background-purple: #6203fc;
+    /* Palette de couleurs */
+    --bg-main: #121214;
+    --bg-card: #18181b;
+    --bg-input: #27272a;
+    --border-color: #27272a;
+
+    --text-main: #f4f4f5;
+    --text-muted: #71717a;
+
+    --accent-pink: #ec4899;
+    --accent-pink-hover: #f472b6;
+    --accent-pink-glow: rgba(236, 72, 153, 0.25);
 }
 
-p {
-  margin: 0;
-  padding: 0;
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+#logo {
+    position: absolute;
+    top: 4px;
+    right: 0px;
+    width: 150px;
+    height: 150px;
+}
+
+#logo img {
+    max-width: 100%;
+    max-height: 100%;
 }
 
 section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
+    width: 100%;
+    max-width: 550px;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .group-create-task {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
+/* Zone d'ajout de tâche */
 article {
-  color: var(--text-white);
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin-top: 10%;
-  margin-bottom: 20%;
-  gap: 20px;
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 4px 12px;
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
 }
 
-.div-btn-filter {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  gap: 10px;
+article:focus-within {
+    border-color: var(--accent-pink);
+    box-shadow: 0 0 0 3px var(--accent-pink-glow);
 }
 
-.btn-filter-selct {
-  background: none;
-  color: var(--color-text-grey);
+#userText {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-main);
+    font-size: 0.95rem;
+    padding: 12px 8px;
 }
 
-.btn-filter-selct:focus {
-  cursor: pointer;
-  outline-color: var(--border-toxic);
+#userText::placeholder {
+    color: var(--text-muted);
 }
 
+/* Boutons globaux */
 button {
-  color: var(--text-white);
-  background-color: var(--background-purple);
-  border: none;
-  outline: 2px solid transparent;
-  outline-offset: 1px;
-  transition: outline-color 0.2s;
-  border-radius: 12px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    padding: 6px;
+    transition: all 0.2s ease;
 }
 
 button:hover {
-  cursor: pointer;
-  outline-color: var(--border-toxic);
+    color: var(--accent-pink);
 }
 
+#completTask svg {
+    fill: var(--text-muted);
+    transition: fill 0.2s;
+}
+
+#completTask:hover svg {
+    fill: var(--accent-pink);
+}
+
+/* Barre de filtres */
+.filter-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 8px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.filter-container div {
+    display: flex;
+    gap: 4px;
+}
+
+.btn-filter-selct {
+    padding: 4px 10px;
+    font-size: 0.85rem;
+}
+
+.btn-filter-selct:hover {
+    color: var(--text-main);
+}
+
+.btn-filter-selct.active,
+.btn-filter-selct:focus {
+    color: var(--accent-pink);
+    background-color: rgba(236, 72, 153, 0.1);
+}
+
+#CrearCompleted:hover {
+    color: #f87171; /* Accent rouge léger pour la suppression */
+}
+
+/* Liste des tâches */
 #listContainer {
-  display: flex;
-  flex-direction: column;
-  list-style: none;
-  padding: 8px;
-  width: 50%;
-  box-shadow: 0px 0px 15px 0px var(--shadow);
-  border-radius: 12px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-height: 350px;
+    overflow-y: auto;
 }
 
 .listContainer-li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  border-top: thin solid var(--shadow);
-  padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--bg-input);
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    transition: border-color 0.2s;
 }
-.filter-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 10px;
+
+.listContainer-li:hover {
+    border-color: var(--border-color);
+}
+
+label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 0.95rem;
+}
+
+/* Checkbox personnalisée */
+input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--text-muted);
+    border-radius: 6px;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s;
+}
+
+input[type="checkbox"]:checked {
+    background-color: var(--accent-pink);
+    border-color: var(--accent-pink);
+}
+
+input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 2px;
+    width: 4px;
+    height: 8px;
+    border: solid var(--bg-main);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* Tâche complétée */
+.listContainer-li.completed label {
+    text-decoration: line-through;
+    color: var(--text-muted);
 }

@@ -1,64 +1,77 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Todolist</title>
-    <link rel="stylesheet" href="./style.css" />
-  </head>
-  <body>
-    <section>
-      <div class="group-create-task">
-        <article>
-          <button id="completTask">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              height="24px"
-              width="24px"
-              fill="#e3e3e3"
-            >
-              <path d="M12,15.4l-6-6L7.4,8L12,12.6L16.6,8L18,9.4l-6,6Z" />
-            </svg>
-          </button>
-          <input
-            type="text"
-            placeholder="Quoi de prévu aujourd'hui ?"
-            id="userText"
-          />
-        </article>
-        <div class="filter-container">
-          <p><span id="PitemsLeft">0</span> items left !</p>
-          <div>
-            <button id="All" class="btn-filter-selct">All</button>
-            <button id="active" class="btn-filter-selct">Active</button>
-            <button id="completed" class="btn-filter-selct">completed</button>
-          </div>
-          <button id="CrearCompleted">Clear completed</button>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Todolist</title>
+        <link rel="stylesheet" href="./style.css" />
+    </head>
+    <body>
+        <div id="logo">
+            <img
+                src="../assets/imaage-removebg-preview.png"
+                alt="gentle mates"
+            />
         </div>
-      </div>
-      <ul id="listContainer">
-        <li class="listContainer-li">
-          <label for="checkboxX"
-            >Test
-            <input type="checkbox" name="checkbox" id="checkboxX" />
-          </label>
-          <button>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              height="24px"
-              width="24px"
-              fill="#e3e3e3"
-            >
-              <path
-                d="M6.4,19L5,17.6L10.6,12L5,6.4L6.4,5L12,10.6L17.6,5L19,6.4L13.4,12L19,17.6L17.6,19L12,13.4L6.4,19Z"
-              />
-            </svg>
-          </button>
-        </li>
-      </ul>
-    </section>
-    <script src="app.js"></script>
-  </body>
+        <section>
+            <div class="group-create-task">
+                <article>
+                    <button id="completTask" title="Tout cocher">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            height="20px"
+                            width="20px"
+                        >
+                            <path
+                                d="M12,15.4l-6-6L7.4,8L12,12.6L16.6,8L18,9.4l-6,6Z"
+                            />
+                        </svg>
+                    </button>
+                    <input
+                        type="text"
+                        placeholder="What's up doc ?"
+                        id="userText"
+                    />
+                </article>
+            </div>
+
+            <ul id="listContainer">
+                <li class="listContainer-li">
+                    <label for="checkbox1">
+                        <input type="checkbox" id="checkbox1" />
+                        <span>Faire la démo du site</span>
+                    </label>
+                    <button title="Supprimer">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            height="18px"
+                            width="18px"
+                            fill="currentColor"
+                        >
+                            <path
+                                d="M6.4,19L5,17.6L10.6,12L5,6.4L6.4,5L12,10.6L17.6,5L19,6.4L13.4,12L19,17.6L17.6,19L12,13.4L6.4,19Z"
+                            />
+                        </svg>
+                    </button>
+                </li>
+            </ul>
+
+            <div class="filter-container">
+                <p><span id="PitemsLeft">1</span> tasks left</p>
+                <div>
+                    <button id="All" class="btn-filter-selct active">
+                        All
+                    </button>
+                    <button id="active" class="btn-filter-selct">Active</button>
+                    <button id="completed" class="btn-filter-selct">
+                        Completed
+                    </button>
+                </div>
+                <button id="CrearCompleted">Clear completed</button>
+            </div>
+        </section>
+        <script src="app.js"></script>
+    </body>
 </html>
