@@ -1,6 +1,7 @@
 //Elements HTML
 const $userText = document.querySelector("#userText");
 const $ul = document.querySelector("#listContainer");
+const $PitemsLeft = document.querySelector("#PitemsLeft");
 
 document.addEventListener("DOMContentLoaded", () => {
     getFromAPI();
@@ -10,8 +11,10 @@ document.addEventListener("DOMContentLoaded", () => {
 $userText.addEventListener("keydown", (e) => {
     if (e.key != "Enter") return;
     if (!e.currentTarget.value.trim()) return;
+    $PitemsLeft.textContent = parseInt($PitemsLeft.textContent) + 1;
+
     createLiElement({ name: e.currentTarget.value.trim(), id: Date.now() });
-    sendTOAPI(e.currentTarget.value.trim());
+    sendTOAPI({ naame: e.currentTarget.value.trim(), id: Date.now() });
     e.currentTarget.value = "";
 });
 
@@ -53,13 +56,17 @@ function createLiElement(text) {
     //Supprime la balise li et ses elements
     $button.addEventListener("click", () => {
         $li.remove();
+        $PitemsLeft.textContent = parseInt($PitemsLeft.textContent) - 1;
+
+        deleteAPI($li.dataset.id);
     });
 }
 
 async function sendTOAPI(text) {
     const tab = {
-        name: text,
+        name: text.naame,
         isChecked: false,
+        id: text.id,
     };
     await fetch(`http://localhost:3008/tasks`, {
         method: "POST",
@@ -78,16 +85,22 @@ async function getFromAPI(query) {
     const request = await fetch("http://localhost:3008/tasks" + queryparams);
     const response = await request.json();
     if (!response) return;
+    $PitemsLeft.textContent = response.length;
     $ul.innerHTML = "";
     response.forEach((element) => {
         createLiElement(element);
     });
-    console.log(response);
 }
 
 async function patchAPI(element) {
     await fetch(`http://localhost:3008/tasks/${element}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
+    });
+}
+
+async function deleteAPI(element) {
+    await fetch(`http://localhost:3008/tasks/${element}`, {
+        method: "DELETE",
     });
 }

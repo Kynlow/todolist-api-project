@@ -11,10 +11,13 @@ app.get("/tasks", (req, res) => {
 });
 
 app.post("/tasks", (req, res) => {
-    const data = req.body;
-    nouvelleTask.id = Date.now();
-
-    tasksTab.push(data);
+    const tab = {};
+    tab.name = req.body.name;
+    tab.id = req.body.id;
+    tab.isChecked = req.body.isChecked;
+    console.log(req.body);
+    tasksTab.push(tab);
+    console.log(req.body.id);
 });
 
 app.listen(3008, () => {
@@ -29,4 +32,11 @@ app.patch("/tasks/:id", (req, res) => {
         return res.status(404).json({ error: "Tâche introuvable" });
     }
     task.isChecked = !task.isChecked;
+    console.log(tasksTab);
+});
+
+app.delete("/tasks/:id", (req, res) => {
+    const id = Number(req.params.id);
+    const index = tasksTab.findIndex((t) => t.id === id);
+    tasksTab.splice(index, 1);
 });
